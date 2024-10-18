@@ -1,9 +1,26 @@
-/**
- * @format
- */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { LoginScreen } from './LoginScreen'; // импортируйте компонент LoginScreen из отдельного файла
+import { RegistrationScreen } from './RegistrationScreen'; // импортируйте компонент RegistrationScreen из отдельного файла
+import { MainScreen } from './MainScreen'; // импортируйте компонент MainScreen из отдельного файла
+import { AppRegistry, StatusBar, SafeAreaView, Text, StyleSheet } from 'react-native';
+import 'react-native-get-random-values';
 
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
+const Stack = createStackNavigator();
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent('InLab', () => App);
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Registration" component={RegistrationScreen} />
+        <Stack.Screen name="Main" component={MainScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
